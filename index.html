@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Primary SEO Metadata -->
+  <title>Adarsh Anumula | Software Engineer — .NET, Python &amp; AI/ML</title>
+  <meta name="description" content="Professional developer portfolio of Adarsh Anumula — IIT Guwahati CSE graduate (2025) and Associate Software Engineer at Proclink Consulting Services specializing in .NET enterprise applications, Python, FastAPI, Machine Learning, and Generative AI.">
+  <meta name="keywords" content="Adarsh Anumula, Software Engineer, IIT Guwahati, Proclink Consulting Services, ASP.NET Core, ASP.NET MVC, C#, SQL Server, Python, FastAPI, Machine Learning, Generative AI, RAG, Portfolio">
+  <meta name="author" content="Adarsh Anumula">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0b0f17" id="meta-theme-color">
+  <link rel="canonical" href="https://adarshanumula7.github.io/">
+
+  <!-- Open Graph / Social Sharing Metadata -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Adarsh Anumula | Software Engineer (.NET | Python | AI/ML)">
+  <meta property="og:description" content="Associate Software Engineer at Proclink Consulting Services &amp; B.Tech CSE graduate from IIT Guwahati. Building reliable enterprise web applications and intelligent software solutions.">
+  <meta property="og:url" content="https://adarshanumula7.github.io/">
+  <meta property="og:site_name" content="Adarsh Anumula Portfolio">
+  <meta property="og:locale" content="en_IN">
+
+  <!-- Twitter Card Metadata -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Adarsh Anumula | Software Engineer — .NET, Python &amp; AI/ML">
+  <meta name="twitter:description" content="Software Engineer experienced in .NET enterprise systems and applied AI/ML solutions (Python, FastAPI, LLMs, RAG).">
+
+  <!-- Inline SVG Data URI Favicon (Zero external asset failure risk) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f172a'/%3E%3Crect x='2' y='2' width='60' height='60' rx='12' fill='none' stroke='%2338bdf8' stroke-width='2' stroke-opacity='0.4'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui, sans-serif' font-weight='800' font-size='26' fill='%2338bdf8'%3EAA%3C/text%3E%3C/svg%3E">
+
+  <!-- Google Fonts with Resilient Fallback -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet">
+
+  <!-- Early Theme Initialization to Prevent Flash of Unstyled Theme -->
+  <script>
+    (function() {
+      try {
+        var savedTheme = localStorage.getItem('aa_portfolio_theme');
+        if (savedTheme === 'light' || savedTheme === 'dark') {
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        } else {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch (err) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+
+  <!-- Main Stylesheet (Relative Path for GitHub Pages Compatibility) -->
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <!-- Skip Navigation Link for Keyboard Accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Sticky Header & Navigation Bar -->
+  <header class="site-header" id="site-header">
+    <div class="container nav-container">
+      <a href="#home" class="brand-logo" aria-label="Adarsh Anumula Home">
+        <span class="brand-monogram" aria-hidden="true">AA</span>
+        <span class="brand-text">
+          <span class="brand-name">Adarsh Anumula</span>
+          <span class="brand-role">Software Engineer</span>
+        </span>
+      </a>
+
+      <nav class="primary-nav" id="primary-nav" aria-label="Primary section navigation">
+        <ul class="nav-list" id="nav-list">
+          <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+          <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+          <li><a href="#skills" class="nav-link" data-section="skills">Skills</a></li>
+          <li><a href="#experience" class="nav-link" data-section="experience">Experience</a></li>
+          <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
+          <li><a href="#github" class="nav-link" data-section="github">GitHub</a></li>
+          <li><a href="#education" class="nav-link" data-section="education">Education</a></li>
+          <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch color theme" title="Toggle Light/Dark Mode">
+          <!-- Sun Icon (shown in dark mode to switch to light) -->
+          <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <!-- Moon Icon (shown in light mode to switch to dark) -->
+          <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <a href="./assets/resume.pdf" download="Adarsh_Anumula_Resume.pdf" class="btn btn-sm btn-outline nav-resume-btn">
+          <span>Resume</span>
+          <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+        </a>
+
+        <button type="button" class="mobile-menu-toggle" id="mobile-menu-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation menu">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Backdrop -->
+  <div class="nav-backdrop" id="nav-backdrop" hidden></div>
+
+  <main id="main-content">
+    <!-- ==================== B. HERO SECTION ==================== -->
+    <section id="home" class="hero-section section-spy">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="status-pill">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span>Associate Software Engineer @ Proclink Consulting Services &bull; IIT Guwahati CSE '25</span>
+          </div>
+
+          <h1 class="hero-title">
+            Adarsh Anumula
+          </h1>
+
+          <p class="hero-headline">
+            Software Engineer <span class="headline-divider">|</span> .NET <span class="headline-divider">|</span> Python <span class="headline-divider">|</span> AI/ML
+          </p>
+
+          <p class="hero-description">
+            Software Engineer focused on architecting reliable enterprise web applications in C# and ASP.NET while engineering intelligent software systems using Python, FastAPI, Machine Learning, and Retrieval-Augmented Generation (RAG).
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#projects" class="btn btn-primary">
+              <span>View My Projects</span>
+              <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="#github" class="btn btn-secondary">
+              <svg class="icon icon-sm" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
+              </svg>
+              <span>Explore My GitHub</span>
+            </a>
+            <a href="./assets/resume.pdf" download="Adarsh_Anumula_Resume.pdf" class="btn btn-outline">
+              <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>Download Resume</span>
+            </a>
+            <a href="#contact" class="btn btn-ghost">
+              <span>Contact Me</span>
+            </a>
+          </div>
+
+          <div class="hero-meta-strip">
+            <div class="hero-social-links" aria-label="Professional profiles">
+              <a href="https://github.com/adarshanumula7" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="GitHub profile: adarshanumula7">
+                <svg class="icon icon-sm" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
+                </svg>
+                <span>github.com/adarshanumula7</span>
+              </a>
+              <a href="https://www.linkedin.com/in/adarsh-anumula-4b0293228/" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="LinkedIn profile: Adarsh Anumula">
+                <svg class="icon icon-sm" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"></path>
+                </svg>
+                <span>LinkedIn</span>
+              </a>
+              <a href="mailto:anumulaadarsh6@gmail.com" class="social-pill" aria-label="Email Adarsh Anumula">
+                <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                <span>anumulaadarsh6@gmail.com</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Abstract Typographic & Architectural Visual Treatment (No Fake Profile Photo) -->
+        <div class="hero-visual" aria-hidden="true">
+          <div class="arch-card">
+            <div class="arch-card-header">
+              <span class="arch-badge">ENGINEERING ARCHITECTURE PROFILE</span>
+              <span class="arch-location">Hyderabad, IN</span>
+            </div>
+
+            <div class="arch-diagram">
+              <!-- Enterprise Stack Node -->
+              <div class="arch-node arch-node-primary">
+                <div class="arch-node-title">Enterprise Application Layer</div>
+                <div class="arch-node-subtitle">Proclink Consulting Services</div>
+                <div class="arch-chip-row">
+                  <span class="arch-chip">C# / ASP.NET Core 8</span>
+                  <span class="arch-chip">ASP.NET MVC</span>
+                  <span class="arch-chip">SQL Server &amp; Stored Procs</span>
+                  <span class="arch-chip">RBAC &amp; JWT Auth</span>
+                </div>
+              </div>
+
+              <div class="arch-connector">
+                <span class="arch-connector-line"></span>
+                <span class="arch-connector-label">REST APIs &bull; Data Pipelines &bull; Async Services</span>
+                <span class="arch-connector-line"></span>
+              </div>
+
+              <!-- Intelligent Systems Node -->
+              <div class="arch-node arch-node-accent">
+                <div class="arch-node-title">AI / ML &amp; Applied Systems Layer</div>
+                <div class="arch-node-subtitle">Engineering &amp; Research Projects</div>
+                <div class="arch-chip-row">
+                  <span class="arch-chip">Python &amp; FastAPI</span>
+                  <span class="arch-chip">LLMs &amp; RAG</span>
+                  <span class="arch-chip">XGBoost / LightGBM</span>
+                  <span class="arch-chip">Async Job Processing</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="arch-card-footer">
+              <div class="arch-metric">
+                <span class="arch-metric-label">Education</span>
+                <span class="arch-metric-value">IIT Guwahati (B.Tech CSE)</span>
+              </div>
+              <div class="arch-metric">
+                <span class="arch-metric-label">JEE Advanced</span>
+                <span class="arch-metric-value">AIR 1529</span>
+              </div>
+              <div class="arch-metric">
+                <span class="arch-metric-label">GitHub Repos</span>
+                <span class="arch-metric-value" id="hero-repo-count">Live API</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== C. ABOUT ME SECTION ==================== -->
+    <section id="about" class="section section-spy">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">01 / Background &amp; Focus</span>
+          <h2 class="section-title">About Adarsh</h2>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-prose">
+            <p class="lead-paragraph">
+              Adarsh Anumula is a Software Engineer based in Hyderabad, India, combining a Computer Science and Engineering foundation from the <strong>Indian Institute of Technology Guwahati (IIT Guwahati)</strong> with hands-on production experience in enterprise web application development.
+            </p>
+            <p>
+              In the current role as an <strong>Associate Software Engineer at Proclink Consulting Services</strong> (July 2025–Present), engineering responsibilities center on designing and maintaining database-driven enterprise web applications using <strong>C#, ASP.NET Core 8, ASP.NET MVC, Razor, ADO.NET, Kendo UI MVC, and SQL Server</strong>. Daily engineering work involves implementing dynamic module configuration, role-based access control (RBAC), JWT-secured authentication flows, hierarchical main and sub-tab navigation systems, and multi-stage reviewer/approver workflows backed by optimized SQL Server stored procedures.
+            </p>
+            <p>
+              Alongside conventional enterprise backend engineering, ongoing project work focuses on <strong>Python backend services, Machine Learning, and Generative AI</strong>. This includes building asynchronous job-processing microservices with FastAPI, developing Retrieval-Augmented Generation (RAG) developer assistants and automated code review platforms using Large Language Models (LLMs), and training gradient-boosted classification pipelines (Scikit-learn, XGBoost, LightGBM) on complex tabular datasets.
+            </p>
+          </div>
+
+          <div class="about-pillars">
+            <article class="pillar-card">
+              <div class="pillar-icon" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                  <line x1="8" y1="21" x2="16" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+              </div>
+              <div>
+                <h3 class="pillar-title">Enterprise .NET Engineering</h3>
+                <p class="pillar-desc">Building structured, maintainable ASP.NET MVC and Core 8 web systems with fine-grained RBAC permissions, dynamic database-driven UI modules, and transactional SQL Server persistence.</p>
+              </div>
+            </article>
+
+            <article class="pillar-card">
+              <div class="pillar-icon" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+              </div>
+              <div>
+                <h3 class="pillar-title">Applied AI &amp; LLM Systems</h3>
+                <p class="pillar-desc">Designing practical Generative AI applications—including RAG knowledge pipelines and automated code analysis tools—bridging LLM capabilities with structured backend APIs.</p>
+              </div>
+            </article>
+
+            <article class="pillar-card">
+              <div class="pillar-icon" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                  <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                  <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="pillar-title">Data &amp; Algorithmic Foundations</h3>
+                <p class="pillar-desc">Grounded in computer science fundamentals from IIT Guwahati, applying statistical modeling, ensemble learning, and relational database design to practical engineering problems.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== D. TECHNICAL SKILLS SECTION ==================== -->
+    <section id="skills" class="section section-alt section-spy">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">02 / Technical Stack</span>
+          <h2 class="section-title">Technical Skills &amp; Provenance</h2>
+          <p class="section-subtitle">
+            Skills are organized by functional domain and labeled by provenance to distinguish production enterprise work from personal and academic project implementations.
+          </p>
+        </div>
+
+        <div class="skills-legend" aria-label="Skill provenance key">
+          <span class="legend-item">
+            <span class="provenance-dot provenance-prod" aria-hidden="true"></span>
+            <span><strong>Production Enterprise:</strong> Applied in professional work at Proclink Consulting Services</span>
+          </span>
+          <span class="legend-item">
+            <span class="provenance-dot provenance-proj" aria-hidden="true"></span>
+            <span><strong>Project &amp; Academic:</strong> Applied in GitHub engineering projects &amp; IIT Guwahati coursework</span>
+          </span>
+        </div>
+
+        <div class="skills-grid">
+          <!-- Category 1: Programming Languages -->
+          <article class="skill-card">
+            <div class="skill-card-header">
+              <svg class="icon skill-cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="4 17 10 11 4 5"></polyline>
+                <line x1="12" y1="19" x2="20" y2="19"></line>
+              </svg>
+              <h3 class="skill-card-title">Programming Languages</h3>
+            </div>
+            <p class="skill-card-context">Core languages used across enterprise backend development, data pipelines, and algorithmic coursework.</p>
+            <ul class="skill-tag-list" aria-label="Programming Languages">
+              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>C#</li>
+              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>SQL</li>
+              <li class="skill-tag" data-provenance="proj"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>Python</li>
+              <li class="skill-tag" data-provenance="proj"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>C++</li>
+              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>JavaScript (ES6+)</li>
+            </ul>
+          </article>
+
+          <!-- Category 2: Backend & Web Development -->
+          <article class="skill-card">
+            <div class="skill-card-header">
+              <svg class="icon skill-cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+              </svg>
+              <h3 class="skill-card-title">Backend &amp; Web Development</h3>
+            </div>
+            <p class="skill-card-context">Enterprise .NET web frameworks, authentication architectures, and asynchronous Python API services.</p>
+            <ul class="skill-tag-list" aria-label="Backend and Web Development">
+              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>ASP.NET Core 8</li>
+              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>ASP.NET MVC</li>
+              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>ADO.NET</li>
+              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>Razor Views</li>
+              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>Kendo UI MVC</li>
+              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>JWT Authentication</li>
+              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>Role-Based Access Control (RBAC)</li>
+              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>REST APIs</li>
+              <li class="skill-tag" data-provenance="proj"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>FastAPI</li>
+              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>HTML5 &amp; CSS3</li>
+            </ul>
+          </article>
+
+          <!-- Category 3: Database Systems -->
+          <article class="skill-card">
+            <div class="skill-card-header">
+              <svg class="icon skill-cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+              </svg>
+              <h3 class="skill-card-title">Database &amp; Persistence</h3>
+            </div>
+            <p class="skill-card-context">Relational schema modeling, stored procedure encapsulates, and database-driven UI configuration.</p>
+            <ul class="skill-tag-list" aria-label="Database Skills">
+              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>Microsoft SQL Server</li>
+              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>Stored Procedures</li>
+              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>Relational Database Design</li>
+              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>Database-Driven UI Configuration</li>
+            </ul>
+          </article>
+
+          <!-- Category 4: AI, Machine Learning & GenAI -->
+          <article class="skill-card">
+            <div class="skill-card-header">
+              <svg class="icon skill-cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"></path>
+                <path d="M16 14h2a4 4 0 0 1 4 4v2H2v-2a4 4 0 0 1 4-4h2"></path>
+                <circle cx="12" cy="14" r="4"></circle>
+              </svg>
+              <h3 class="skill-card-title">AI, Machine Learning &amp; GenAI</h3>
+            </div>
+            <p class="skill-card-context">Supervised learning pipelines, gradient boosting on imbalanced data, and LLM/RAG application design.</p>
+            <ul class="skill-tag-list" aria-label="AI and Machine Learning">
+              <li class="skill-tag" data-provenance="proj"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>Generative AI &amp; LLMs</li>
+              <li class="skill-tag" data-provenance="proj"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>Retrieval-Augmented Generation (RAG)</li>
+              <li class="skill-tag" data-provenance="proj"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>Prompt Engineering</li>
+              <li class="skill-tag" data-provenance="proj"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>Machine Learning Classification</li>
+              <li class="skill-tag" data-provenance="proj"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>Scikit-learn</li>
+              <li class="skill-tag" data-provenance="proj"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>XGBoost &amp; LightGBM</li>
+              <li class="skill-tag" data-provenance="proj"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>NumPy &amp; Pandas</li>
+            </ul>
+          </article>
+
+          <!-- Category 5: Developer Tools & Infrastructure -->
+          <article class="skill-card">
+            <div class="skill-card-header">
+              <svg class="icon skill-cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+              </svg>
+              <h3 class="skill-card-title">Tools &amp; Deployment</h3>
+            </div>
+            <p class="skill-card-context">Development environments, version control, web server hosting, and API testing utilities.</p>
+            <ul class="skill-tag-list" aria-label="Tools and Technologies">
+              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>Visual Studio 2022</li>
+              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>IIS (Internet Information Services)</li>
+              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>Git &amp; GitHub</li>
+              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>VS Code</li>
+              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>Postman</li>
+              <li class="skill-tag" data-provenance="proj"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>Docker</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== E. PROFESSIONAL EXPERIENCE SECTION ==================== -->
+    <section id="experience" class="section section-spy">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">03 / Career History</span>
+          <h2 class="section-title">Professional Experience</h2>
+          <p class="section-subtitle">
+            Enterprise software engineering responsibilities focused on full-stack .NET development, security workflows, and database-driven architecture.
+          </p>
+        </div>
+
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-card">
+              <div class="timeline-card-header">
+                <div>
+                  <span class="timeline-badge">Current Role</span>
+                  <h3 class="timeline-role">Associate Software Engineer</h3>
+                  <p class="timeline-company">
+                    <strong>Proclink Consulting Services</strong> &bull; Hyderabad, Telangana, India
+                  </p>
+                </div>
+                <div class="timeline-period">
+                  <time datetime="2025-07">July 2025</time> &ndash; Present
+                </div>
+              </div>
+
+              <p class="timeline-summary">
+                Contributing to the architecture, development, and deployment of enterprise web applications using the Microsoft .NET ecosystem and SQL Server for regulated business operations.
+              </p>
+
+              <ul class="timeline-achievements">
+                <li>
+                  <strong>Enterprise Web Application Development:</strong> Engineered modular backend controllers and server-rendered user interfaces using <strong>C#, ASP.NET Core 8, ASP.NET MVC, and Razor views</strong>, integrating <strong>Kendo UI MVC</strong> components for structured enterprise data grids and interactive forms.
+                </li>
+                <li>
+                  <strong>Database-Driven UI &amp; Dynamic Module Configuration:</strong> Architected database-backed module configuration and hierarchical <strong>main/sub-tab management systems</strong>, allowing application layouts, navigation trees, and form behaviors to adapt dynamically via metadata stored in <strong>SQL Server</strong> rather than hardcoded view logic.
+                </li>
+                <li>
+                  <strong>Authentication &amp; Role-Based Access Control (RBAC):</strong> Implemented <strong>JWT Authentication</strong> and granular <strong>Role-Based Access Control (RBAC)</strong> policies across controllers and UI views, enforcing strict permission boundaries for diverse organizational roles.
+                </li>
+                <li>
+                  <strong>Multi-Stage Reviewer &amp; Approver Workflows:</strong> Built stateful <strong>reviewer and approver workflow engines</strong> supporting multi-tier submission validation, status transitions, audit logging, and role-gated action triggers.
+                </li>
+                <li>
+                  <strong>Data Access &amp; Stored Procedure Integration:</strong> Developed structured data access layers using <strong>ADO.NET</strong> and parameterized <strong>SQL Server Stored Procedures</strong> to handle complex relational queries, transactional updates, and server-side validation logic, deploying builds via <strong>Visual Studio 2022</strong> and <strong>IIS</strong>.
+                </li>
+              </ul>
+
+              <div class="timeline-tech-stack" aria-label="Technologies used at Proclink Consulting Services">
+                <span class="tech-pill">C#</span>
+                <span class="tech-pill">ASP.NET Core 8</span>
+                <span class="tech-pill">ASP.NET MVC</span>
+                <span class="tech-pill">Razor</span>
+                <span class="tech-pill">ADO.NET</span>
+                <span class="tech-pill">SQL Server</span>
+                <span class="tech-pill">Stored Procedures</span>
+                <span class="tech-pill">Kendo UI MVC</span>
+                <span class="tech-pill">JWT Authentication</span>
+                <span class="tech-pill">RBAC</span>
+                <span class="tech-pill">IIS</span>
+                <span class="tech-pill">Visual Studio 2022</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== F. FEATURED PROJECTS SECTION ==================== -->
+    <section id="projects" class="section section-alt section-spy">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">04 / Engineering Portfolio</span>
+          <h2 class="section-title">Featured Projects &amp; Systems</h2>
+          <p class="section-subtitle">
+            Selected engineering implementations spanning Generative AI, Python/FastAPI microservices, Machine Learning classification, and enterprise .NET architectural patterns. Cards automatically synchronize with live GitHub repository metadata when matching public repositories are detected.
+          </p>
+        </div>
+
+        <!-- Project Category Filter Bar -->
+        <div class="filter-bar" role="toolbar" aria-label="Filter featured projects by technology category">
+          <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">All Projects</button>
+          <button type="button" class="filter-btn" data-filter="genai" aria-pressed="false">Generative AI</button>
+          <button type="button" class="filter-btn" data-filter="aiml" aria-pressed="false">AI/ML</button>
+          <button type="button" class="filter-btn" data-filter="python" aria-pressed="false">Python</button>
+          <button type="button" class="filter-btn" data-filter="dotnet" aria-pressed="false">.NET</button>
+          <button type="button" class="filter-btn" data-filter="web" aria-pressed="false">Web Development</button>
+        </div>
+
+        <!-- Featured Projects Grid (Populated and filtered by js/projects.js) -->
+        <div class="projects-grid" id="featured-projects-grid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ==================== G. GITHUB INTEGRATION SECTION ==================== -->
+    <section id="github" class="section section-spy">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">05 / Live Open-Source Index</span>
+          <h2 class="section-title">GitHub Repository Explorer</h2>
+          <p class="section-subtitle">
+            Dynamically fetched in real time from the public GitHub REST API for <code>adarshanumula7</code>. Includes all public owned and forked repositories with client-side caching, search, language filtering, and multi-criteria sorting.
+          </p>
+        </div>
+
+        <!-- Dynamic GitHub Overview Dashboard -->
+        <div class="gh-dashboard" aria-label="GitHub account statistics">
+          <div class="gh-stat-card gh-profile-card">
+            <div class="gh-stat-label">GitHub Account</div>
+            <div class="gh-stat-value gh-username">
+              <a href="https://github.com/adarshanumula7" target="_blank" rel="noopener noreferrer" id="gh-stat-profile-link">
+                @adarshanumula7
+              </a>
+            </div>
+            <div class="gh-stat-meta" id="gh-cache-status">Connecting to GitHub REST API...</div>
+          </div>
+
+          <div class="gh-stat-card">
+            <div class="gh-stat-label">Public Repositories</div>
+            <div class="gh-stat-value" id="gh-stat-repos">&mdash;</div>
+            <div class="gh-stat-meta">Owned &amp; public forks</div>
+          </div>
+
+          <div class="gh-stat-card">
+            <div class="gh-stat-label">Total Stars</div>
+            <div class="gh-stat-value" id="gh-stat-stars">&mdash;</div>
+            <div class="gh-stat-meta">Across retrieved repos</div>
+          </div>
+
+          <div class="gh-stat-card">
+            <div class="gh-stat-label">Total Forks</div>
+            <div class="gh-stat-value" id="gh-stat-forks">&mdash;</div>
+            <div class="gh-stat-meta">Community &amp; network forks</div>
+          </div>
+        </div>
+
+        <!-- Search, Filter, and Sort Controls -->
+        <div class="gh-controls" aria-label="Search and filter GitHub repositories">
+          <div class="gh-search-wrap">
+            <label for="gh-search-input" class="sr-only">Search repositories by name, description, or topic</label>
+            <svg class="icon gh-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="search" id="gh-search-input" class="gh-input" placeholder="Search by repository name, description, or topic..." autocomplete="off">
+          </div>
+
+          <div class="gh-select-group">
+            <div class="gh-select-wrap">
+              <label for="gh-language-select" class="sr-only">Filter by programming language</label>
+              <select id="gh-language-select" class="gh-select">
+                <option value="all">All Languages</option>
+              </select>
+            </div>
+
+            <div class="gh-select-wrap">
+              <label for="gh-sort-select" class="sr-only">Sort repositories</label>
+              <select id="gh-sort-select" class="gh-select">
+                <option value="updated">Sort: Recently Updated</option>
+                <option value="stars">Sort: Most Stars</option>
+                <option value="name">Sort: Alphabetical (A–Z)</option>
+              </select>
+            </div>
+
+            <button type="button" id="gh-clear-btn" class="btn btn-sm btn-outline">
+              Clear Filters
+            </button>
+
+            <button type="button" id="gh-refresh-btn" class="btn btn-sm btn-ghost" title="Force refresh from GitHub API">
+              <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="23 4 23 10 17 10"></polyline>
+                <polyline points="1 20 1 14 7 14"></polyline>
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+              </svg>
+              <span>Refresh</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Results Counter -->
+        <div class="gh-results-bar">
+          <span id="gh-results-count" class="gh-results-text">Loading repositories...</span>
+          <a href="https://github.com/adarshanumula7?tab=repositories" target="_blank" rel="noopener noreferrer" class="gh-direct-link">
+            View all directly on GitHub &rarr;
+          </a>
+        </div>
+
+        <!-- Loading State (Skeleton Cards) -->
+        <div id="gh-loading-state" class="gh-repo-grid" aria-busy="true" aria-label="Loading GitHub repositories">
+          <div class="gh-skeleton-card"></div>
+          <div class="gh-skeleton-card"></div>
+          <div class="gh-skeleton-card"></div>
+          <div class="gh-skeleton-card"></div>
+          <div class="gh-skeleton-card"></div>
+          <div class="gh-skeleton-card"></div>
+        </div>
+
+        <!-- Error State (Hidden by default; always retains direct GitHub link) -->
+        <div id="gh-error-state" class="gh-state-box gh-error-box" hidden role="alert">
+          <h3 class="gh-state-title">Unable to Reach GitHub REST API</h3>
+          <p class="gh-state-desc" id="gh-error-message">
+            The GitHub API rate limit may have been reached or the network connection is currently unavailable.
+          </p>
+          <div class="gh-state-actions">
+            <button type="button" id="gh-retry-btn" class="btn btn-sm btn-primary">Retry API Fetch</button>
+            <a href="https://github.com/adarshanumula7?tab=repositories" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline">
+              Open @adarshanumula7 on GitHub
+            </a>
+          </div>
+        </div>
+
+        <!-- Empty Search/Filter State (Hidden by default) -->
+        <div id="gh-empty-state" class="gh-state-box" hidden>
+          <h3 class="gh-state-title">No Matching Repositories Found</h3>
+          <p class="gh-state-desc">
+            No public repositories match the active search query or programming language filter.
+          </p>
+          <div class="gh-state-actions">
+            <button type="button" id="gh-empty-reset-btn" class="btn btn-sm btn-secondary">Reset Search &amp; Filters</button>
+          </div>
+        </div>
+
+        <!-- Live Repository Cards Container -->
+        <div id="gh-repo-grid" class="gh-repo-grid" aria-live="polite" hidden></div>
+
+        <!-- UI Pagination Controls (When repository count exceeds page view limit) -->
+        <div id="gh-pagination" class="gh-pagination" hidden aria-label="Repository list pagination"></div>
+      </div>
+    </section>
+
+    <!-- ==================== H. EDUCATION & I. ACHIEVEMENTS SECTION ==================== -->
+    <section id="education" class="section section-alt section-spy">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">06 / Academic Credentials &amp; Honors</span>
+          <h2 class="section-title">Education &amp; Verified Achievements</h2>
+        </div>
+
+        <div class="edu-achieve-grid">
+          <!-- Education Column -->
+          <div class="edu-column">
+            <h3 class="column-heading">Academic Degree</h3>
+            <article class="edu-card">
+              <div class="edu-card-top">
+                <div>
+                  <span class="edu-type-badge">Undergraduate Degree</span>
+                  <h4 class="edu-institution">Indian Institute of Technology Guwahati</h4>
+                  <p class="edu-degree">Bachelor of Technology (B.Tech) in Computer Science and Engineering</p>
+                </div>
+                <span class="edu-duration">2021 &ndash; 2025</span>
+              </div>
+
+              <div class="edu-metrics-row">
+                <div class="edu-metric-box">
+                  <span class="edu-metric-label">CGPA</span>
+                  <span class="edu-metric-val">6.51 <small>/ 10.0</small></span>
+                </div>
+                <div class="edu-metric-box">
+                  <span class="edu-metric-label">Department</span>
+                  <span class="edu-metric-val">Computer Science &amp; Engg.</span>
+                </div>
+                <div class="edu-metric-box">
+                  <span class="edu-metric-label">Convocation</span>
+                  <span class="edu-metric-val">July 2025 (27th)</span>
+                </div>
+              </div>
+
+              <p class="edu-notes">
+                Completed rigorous undergraduate training in algorithms, data structures, operating systems, computer networks, database management systems, and machine learning at one of India's premier institutes of technology.
+              </p>
+            </article>
+          </div>
+
+          <!-- Achievements Column -->
+          <div class="achieve-column">
+            <h3 class="column-heading">Competitive Examinations &amp; Honors</h3>
+            <div class="achieve-list">
+              <article class="achieve-card">
+                <div class="achieve-rank-badge">AIR 1529</div>
+                <div class="achieve-body">
+                  <h4 class="achieve-title">Joint Entrance Examination (JEE) Advanced 2021</h4>
+                  <p class="achieve-desc">
+                    Secured <strong>All India Rank 1529</strong> among 1,41,699 candidates who appeared for both papers (top <strong>1.08%</strong> nationally) and 2,50,597 candidates shortlisted from JEE (Main) 2021.
+                  </p>
+                </div>
+              </article>
+
+              <article class="achieve-card">
+                <div class="achieve-rank-badge">Top 1%</div>
+                <div class="achieve-body">
+                  <h4 class="achieve-title">JEE (Main) 2021 National Qualification</h4>
+                  <p class="achieve-desc">
+                    Qualified in the top national percentile tier among over one million engineering aspirants across India to earn direct eligibility for JEE (Advanced) 2021 and admission to IIT Guwahati CSE.
+                  </p>
+                </div>
+              </article>
+
+              <article class="achieve-card">
+                <div class="achieve-rank-badge">IITG CSE</div>
+                <div class="achieve-body">
+                  <h4 class="achieve-title">B.Tech Computer Science Selection &amp; Conferral</h4>
+                  <p class="achieve-desc">
+                    Admitted to the flagship B.Tech Computer Science and Engineering program at IIT Guwahati (2021–2025 cohort) and conferred degree at the 27th Convocation in July 2025.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== J. CONTACT SECTION ==================== -->
+    <section id="contact" class="section section-spy">
+      <div class="container">
+        <div class="contact-card">
+          <div class="contact-content">
+            <span class="section-eyebrow">07 / Direct Channels</span>
+            <h2 class="section-title">Get in Touch</h2>
+            <p class="contact-cta-text">
+              Interested in working together or discussing software engineering and AI? Feel free to reach out.
+            </p>
+
+            <div class="contact-location">
+              <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span>Hyderabad, Telangana, India</span>
+            </div>
+          </div>
+
+          <div class="contact-links-grid">
+            <a href="mailto:anumulaadarsh6@gmail.com" class="contact-channel-card">
+              <div class="channel-icon-wrap" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <div class="channel-details">
+                <span class="channel-label">Professional Email</span>
+                <span class="channel-value">anumulaadarsh6@gmail.com</span>
+              </div>
+              <span class="channel-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <a href="https://github.com/adarshanumula7" target="_blank" rel="noopener noreferrer" class="contact-channel-card">
+              <div class="channel-icon-wrap" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
+                </svg>
+              </div>
+              <div class="channel-details">
+                <span class="channel-label">GitHub Profile</span>
+                <span class="channel-value">github.com/adarshanumula7</span>
+              </div>
+              <span class="channel-arrow" aria-hidden="true">&nearr;</span>
+            </a>
+
+            <a href="https://www.linkedin.com/in/adarsh-anumula-4b0293228/" target="_blank" rel="noopener noreferrer" class="contact-channel-card">
+              <div class="channel-icon-wrap" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"></path>
+                </svg>
+              </div>
+              <div class="channel-details">
+                <span class="channel-label">LinkedIn Network</span>
+                <span class="channel-value">linkedin.com/in/adarsh-anumula-4b0293228</span>
+              </div>
+              <span class="channel-arrow" aria-hidden="true">&nearr;</span>
+            </a>
+
+            <a href="./assets/resume.pdf" download="Adarsh_Anumula_Resume.pdf" class="contact-channel-card">
+              <div class="channel-icon-wrap" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="12" y1="18" x2="12" y2="12"></line>
+                  <polyline points="9 15 12 18 15 15"></polyline>
+                </svg>
+              </div>
+              <div class="channel-details">
+                <span class="channel-label">Curriculum Vitae</span>
+                <span class="channel-value">Download Resume (PDF)</span>
+              </div>
+              <span class="channel-arrow" aria-hidden="true">&darr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== K. FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-left">
+        <span class="footer-brand">Adarsh Anumula</span>
+        <span class="footer-copy">&copy; <span id="current-year">2026</span> Adarsh Anumula. All rights reserved.</span>
+      </div>
+
+      <div class="footer-right">
+        <a href="https://github.com/adarshanumula7" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a>
+        <a href="https://www.linkedin.com/in/adarsh-anumula-4b0293228/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+        <a href="mailto:anumulaadarsh6@gmail.com" class="footer-link">Email</a>
+        <a href="#home" class="footer-top-link" id="back-to-top" aria-label="Scroll back to top">
+          <span>Back to top</span>
+          <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="5 12 12 5 19 12"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modular Vanilla JavaScript Files (Relative Paths) -->
+  <script src="./js/projects.js" defer></script>
+  <script src="./js/github.js" defer></script>
+  <script src="./js/main.js" defer></script>
+</body>
+</html>
