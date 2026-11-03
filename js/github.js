@@ -411,6 +411,7 @@
 
     if (totalFiltered === 0) {
       grid.hidden = true;
+      grid.style.display = 'none';
       if (pagEl) pagEl.hidden = true;
       if (emptyState) emptyState.hidden = false;
       return;
@@ -418,6 +419,7 @@
 
     if (emptyState) emptyState.hidden = true;
     grid.hidden = false;
+    grid.style.display = 'grid';
 
     var totalPages = Math.ceil(totalFiltered / UI_PAGE_SIZE);
     if (state.currentPage > totalPages) {
@@ -439,10 +441,17 @@
     var errorEl = document.getElementById('gh-error-state');
     var gridEl = document.getElementById('gh-repo-grid');
 
-    if (loadingEl) loadingEl.hidden = !isLoading;
+    if (loadingEl) {
+      loadingEl.hidden = !isLoading;
+      loadingEl.style.display = isLoading ? 'grid' : 'none';
+      loadingEl.setAttribute('aria-busy', isLoading ? 'true' : 'false');
+    }
     if (isLoading) {
       if (errorEl) errorEl.hidden = true;
-      if (gridEl) gridEl.hidden = true;
+      if (gridEl) {
+        gridEl.hidden = true;
+        gridEl.style.display = 'none';
+      }
     }
   }
 
