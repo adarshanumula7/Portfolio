@@ -1,8 +1,8 @@
 /**
  * js/github.js
- * Dynamic GitHub REST API Integration for @adarshanumula7
+ * Dynamic GitHub REST API Integration & Chart.js Visual Analytics for @adarshanumula7
  * Features: Multi-page pagination (>100 repos), localStorage caching with TTL,
- * XSS-safe DOM creation, dynamic dashboard stats, search, language filter, and sorting.
+ * XSS-safe DOM creation, animated counters, Chart.js visualizations, search, filter, and sort.
  */
 (function () {
   'use strict';
@@ -20,6 +20,9 @@
     sortBy: 'updated',
     currentPage: 1
   };
+
+  var langChartInstance = null;
+  var repoChartInstance = null;
 
   function createEl(tag, className, text) {
     var el = document.createElement(tag);
@@ -81,13 +84,10 @@
     }
   }
 
-  /**
-   * Fetches all public repositories owned by GITHUB_USERNAME across all pages (per_page=100).
-   */
   async function fetchAllOwnedRepos() {
     var allRepos = [];
     var page = 1;
-    var maxPages = 10; // Safety ceiling (up to 1,000 repositories)
+    var maxPages = 10;
 
     while (page <= maxPages) {
       var endpoint =
@@ -115,7 +115,6 @@
         break;
       }
 
-      // Strictly retain only public repositories owned by the target account
       var ownedPublic = pageData.filter(function (repo) {
         var isOwner =
           repo &&
@@ -137,6 +136,26 @@
     return allRepos;
   }
 
+  function animateStatValue(el, targetValue) {
+    if (!el) return;
+    var prefersReducedMotion =
+      window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (window.gsap && !prefersReducedMotion) {
+      var counterObj = { val: 0 };
+      window.gsap.to(counterObj, {
+        val: targetValue,
+        duration: 1.2,
+        ease: 'power2.out',
+        onUpdate: function () {
+          el.textContent = String(Math.round(counterObj.val));
+        }
+      });
+    } else {
+      el.textContent = String(targetValue);
+    }
+  }
+
   function updateDashboardStats(repos, cacheStatusText) {
     var reposEl = document.getElementById('gh-stat-repos');
     var starsEl = document.getElementById('gh-stat-stars');
@@ -153,11 +172,177 @@
       totalForks += Number(r.forks_count) || 0;
     });
 
-    if (reposEl) reposEl.textContent = String(totalRepos);
-    if (starsEl) starsEl.textContent = String(totalStars);
-    if (forksEl) forksEl.textContent = String(totalForks);
+    animateStatValue(reposEl, totalRepos);
+    animateStatValue(starsEl, totalStars);
+    animateStatValue(forksEl, totalForks);
+
     if (statusEl && cacheStatusText) statusEl.textContent = cacheStatusText;
     if (heroRepoCountEl) heroRepoCountEl.textContent = totalRepos + ' Public';
+  }
+
+  /**
+   * Upgrade #2: Renders or updates the two live Chart.js visualizations
+   */
+  function renderGitHubCharts(repos) {
+    var panel = document.getElementById('gh-analytics-panel');
+    if (!window.Chart || !Array.isArray(repos) || repos.length === 0) {
+      if (panel) panel.hidden = true;
+      return;
+    }
+    if (panel) panel.hidden = false;
+
+    var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    var textColor = isLight ? '#334155' : '#cbd5e1';
+    var gridColor = isLight ? '#e2e8f0' : '#1e293b';
+    var surfaceBg = isLight ? '#ffffff' : '#161f33';
+
+    // 1. Language Distribution Data
+    var langCounts = {};
+    repos.forEach(function (r) {
+      var lang = r.language || 'Multi / Docs';
+      langCounts[lang] = (langCounts[lang] || 0) + 1;
+    });
+
+    var sortedLangs = Object.keys(langCounts).sort(function (a, b) {
+      return langCounts[b] - langCounts[a];
+    });
+    var langData = sortedLangs.map(function (l) {
+      return langCounts[l];
+    });
+
+    var palette = [
+      '#38bdf8',
+      '#818cf8',
+      '#34d399',
+      '#fbbf24',
+      '#f472b6',
+      '#a78bfa',
+      '#fb923c',
+      '#94a3b8'
+    ];
+
+    var langCanvas = document.getElementById('gh-lang-chart');
+    if (langCanvas) {
+      if (langChartInstance) {
+        langChartInstance.destroy();
+      }
+      langChartInstance = new window.Chart(langCanvas.getContext('2d'), {
+        type: 'doughnut',
+        data: {
+          labels: sortedLangs,
+          datasets: [
+            {
+              data: langData,
+              backgroundColor: palette.slice(0, sortedLangs.length),
+              borderColor: surfaceBg,
+              borderWidth: 2,
+              hoverOffset: 6
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '64%',
+          plugins: {
+            legend: {
+              position: 'right',
+              labels: {
+                color: textColor,
+                font: { family: "'JetBrains Mono', monospace", size: 11 },
+                boxWidth: 12,
+                padding: 12
+              }
+            },
+            tooltip: {
+              callbacks: {
+                label: function (ctx) {
+                  var count = ctx.parsed;
+                  var pct = ((count / repos.length) * 100).toFixed(1);
+                  return ' ' + ctx.label + ': ' + count + ' repos (' + pct + '%)';
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // 2. Top 6 Repositories by Codebase Size (KB)
+    var topRepos = repos
+      .slice()
+      .sort(function (a, b) {
+        return (Number(b.size) || 0) - (Number(a.size) || 0);
+      })
+      .slice(0, 6);
+
+    var repoLabels = topRepos.map(function (r) {
+      var name = r.name || 'Repo';
+      return name.length > 22 ? name.slice(0, 20) + '…' : name;
+    });
+    var repoSizes = topRepos.map(function (r) {
+      return Math.max(1, Number(r.size) || 1);
+    });
+
+    var repoCanvas = document.getElementById('gh-repo-chart');
+    if (repoCanvas) {
+      if (repoChartInstance) {
+        repoChartInstance.destroy();
+      }
+      repoChartInstance = new window.Chart(repoCanvas.getContext('2d'), {
+        type: 'bar',
+        data: {
+          labels: repoLabels,
+          datasets: [
+            {
+              label: 'Size (KB)',
+              data: repoSizes,
+              backgroundColor: isLight ? 'rgba(2, 132, 199, 0.75)' : 'rgba(56, 189, 248, 0.75)',
+              borderColor: isLight ? '#0284c7' : '#38bdf8',
+              borderWidth: 1,
+              borderRadius: 5
+            }
+          ]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              grid: { color: gridColor },
+              ticks: {
+                color: textColor,
+                font: { family: "'JetBrains Mono', monospace", size: 11 }
+              }
+            },
+            y: {
+              grid: { display: false },
+              ticks: {
+                color: textColor,
+                font: { family: "'JetBrains Mono', monospace", size: 11 }
+              }
+            }
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                title: function (items) {
+                  var idx = items[0].dataIndex;
+                  return topRepos[idx] ? topRepos[idx].name : '';
+                },
+                label: function (ctx) {
+                  var repo = topRepos[ctx.dataIndex];
+                  var lang = repo && repo.language ? repo.language : 'Multi / Docs';
+                  return ' Size: ' + ctx.parsed.x + ' KB • Language: ' + lang;
+                }
+              }
+            }
+          }
+        }
+      });
+    }
   }
 
   function populateLanguageFilter(repos) {
@@ -208,7 +393,6 @@
     var sort = state.sortBy;
 
     var results = state.allRepos.filter(function (repo) {
-      // Language filter
       if (lang !== 'all') {
         if (lang === '__none__') {
           if (repo.language) return false;
@@ -217,7 +401,6 @@
         }
       }
 
-      // Search query filter (checks name, description, topics, and language)
       if (query) {
         var nameStr = (repo.name || '').toLowerCase();
         var descStr = (repo.description || '').toLowerCase();
@@ -236,7 +419,6 @@
       return true;
     });
 
-    // Sorting
     results.sort(function (a, b) {
       if (sort === 'stars') {
         var starDiff = (Number(b.stargazers_count) || 0) - (Number(a.stargazers_count) || 0);
@@ -244,7 +426,6 @@
       } else if (sort === 'name') {
         return (a.name || '').localeCompare(b.name || '');
       }
-      // Default: recently updated
       var dateA = new Date(a.updated_at || 0).getTime();
       var dateB = new Date(b.updated_at || 0).getTime();
       return dateB - dateA;
@@ -255,9 +436,8 @@
   }
 
   function renderRepositoryCard(repo) {
-    var card = createEl('article', 'gh-repo-card');
+    var card = createEl('article', 'gh-repo-card spotlight-card');
 
-    // Header: Name + Fork/Archived Badges
     var header = createEl('div', 'gh-repo-header');
     var titleH3 = createEl('h3', 'gh-repo-title');
     var titleLink = createEl('a', null, repo.name || 'Unnamed Repository');
@@ -279,7 +459,6 @@
     header.appendChild(badgesWrap);
     card.appendChild(header);
 
-    // Description (Never silently exclude repositories without descriptions)
     if (repo.description && repo.description.trim().length > 0) {
       card.appendChild(createEl('p', 'gh-repo-desc', repo.description.trim()));
     } else {
@@ -292,7 +471,6 @@
       );
     }
 
-    // Topics (if available)
     if (Array.isArray(repo.topics) && repo.topics.length > 0) {
       var topicsRow = createEl('div', 'gh-topics-row');
       repo.topics.slice(0, 5).forEach(function (topic) {
@@ -301,7 +479,6 @@
       card.appendChild(topicsRow);
     }
 
-    // Footer Metadata (Language, Stars, Forks, Updated Date)
     var footer = createEl('div', 'gh-repo-footer');
     var metaLeft = createEl('div', 'gh-meta-left');
 
@@ -324,7 +501,6 @@
     footer.appendChild(updatedSpan);
     card.appendChild(footer);
 
-    // Action Buttons (GitHub Repo + Optional Verified Homepage Link)
     var actionsRow = createEl('div', 'gh-repo-actions');
     var repoBtn = createEl('a', 'btn btn-sm btn-outline', 'GitHub Repo');
     repoBtn.setAttribute('href', repo.html_url || 'https://github.com/' + GITHUB_USERNAME);
@@ -434,8 +610,15 @@
     });
 
     renderPagination(totalPages);
+
+    if (window.PortfolioUI && typeof window.PortfolioUI.refreshEnhancements === 'function') {
+      window.PortfolioUI.refreshEnhancements();
+    }
   }
 
+  /**
+   * Fixed setLoadingView: Explicitly synchronizes both .hidden and style.display
+   */
   function setLoadingView(isLoading) {
     var loadingEl = document.getElementById('gh-loading-state');
     var errorEl = document.getElementById('gh-error-state');
@@ -471,6 +654,7 @@
           'Cached data (' + new Date(freshCache.timestamp).toLocaleTimeString() + ')'
         );
         populateLanguageFilter(state.allRepos);
+        renderGitHubCharts(state.allRepos);
         applyFiltersAndSort();
         if (window.PortfolioProjects) {
           window.PortfolioProjects.reconcileWithGitHub(state.allRepos);
@@ -487,6 +671,7 @@
       setLoadingView(false);
       updateDashboardStats(liveRepos, 'Live from GitHub REST API');
       populateLanguageFilter(liveRepos);
+      renderGitHubCharts(liveRepos);
       applyFiltersAndSort();
 
       if (window.PortfolioProjects) {
@@ -495,12 +680,12 @@
     } catch (err) {
       setLoadingView(false);
 
-      // Attempt stale cache fallback so the UI remains functional during rate-limits
       var staleCache = readCache(true);
       if (staleCache && staleCache.repos.length > 0) {
         state.allRepos = staleCache.repos;
         updateDashboardStats(state.allRepos, 'Offline / Rate-limited (Showing cached snapshot)');
         populateLanguageFilter(state.allRepos);
+        renderGitHubCharts(state.allRepos);
         applyFiltersAndSort();
         if (window.PortfolioProjects) {
           window.PortfolioProjects.reconcileWithGitHub(state.allRepos);
@@ -589,12 +774,19 @@
     }
   }
 
+  function refreshChartTheme() {
+    if (state.allRepos && state.allRepos.length > 0) {
+      renderGitHubCharts(state.allRepos);
+    }
+  }
+
   function init() {
     bindControlEvents();
     loadRepositories(false);
   }
 
   window.GitHubExplorer = {
-    init: init
+    init: init,
+    refreshChartTheme: refreshChartTheme
   };
 })();

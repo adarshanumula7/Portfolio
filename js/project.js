@@ -1,7 +1,8 @@
 /**
  * js/projects.js
  * Curated Featured Projects & Engineering Systems Module
- * Synchronizes verified project descriptions with live GitHub REST API data.
+ * Synchronizes verified project descriptions with live GitHub REST API data,
+ * applies Vanilla-Tilt 3D physics on desktop, and triggers smooth layout transitions.
  */
 (function () {
   'use strict';
@@ -132,6 +133,27 @@
     }
   }
 
+  function enhanceRenderedCards(grid) {
+    var prefersReducedMotion =
+      window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var isFinePointer =
+      window.matchMedia && window.matchMedia('(pointer: fine)').matches;
+
+    if (window.VanillaTilt && !prefersReducedMotion && isFinePointer) {
+      var cards = grid.querySelectorAll('.project-card');
+      window.VanillaTilt.init(Array.prototype.slice.call(cards), {
+        max: 4,
+        speed: 350,
+        glare: true,
+        'max-glare': 0.08
+      });
+    }
+
+    if (window.PortfolioUI && typeof window.PortfolioUI.refreshEnhancements === 'function') {
+      window.PortfolioUI.refreshEnhancements();
+    }
+  }
+
   function renderProjects() {
     var grid = document.getElementById('featured-projects-grid');
     if (!grid) return;
@@ -146,7 +168,8 @@
     });
 
     filtered.forEach(function (proj) {
-      var card = createEl('article', 'project-card');
+      var card = createEl('article', 'project-card spotlight-card');
+      card.setAttribute('data-project-id', proj.id);
 
       // Top bar
       var topRow = createEl('div', 'project-card-top');
@@ -225,6 +248,22 @@
       card.appendChild(linksWrap);
       grid.appendChild(card);
     });
+
+    enhanceRenderedCards(grid);
+  }
+
+  function filterByCategory(category) {
+    var selected = category || 'all';
+    activeCategory = selected;
+
+    var buttons = document.querySelectorAll('.filter-btn');
+    buttons.forEach(function (b) {
+      var isMatch = b.getAttribute('data-filter') === selected;
+      b.classList.toggle('active', isMatch);
+      b.setAttribute('aria-pressed', isMatch ? 'true' : 'false');
+    });
+
+    renderProjects();
   }
 
   function setupFilterButtons() {
@@ -232,23 +271,11 @@
     buttons.forEach(function (btn) {
       btn.addEventListener('click', function () {
         var selected = btn.getAttribute('data-filter') || 'all';
-        activeCategory = selected;
-
-        buttons.forEach(function (b) {
-          var isMatch = b.getAttribute('data-filter') === selected;
-          b.classList.toggle('active', isMatch);
-          b.setAttribute('aria-pressed', isMatch ? 'true' : 'false');
-        });
-
-        renderProjects();
+        filterByCategory(selected);
       });
     });
   }
 
-  /**
-   * Reconciles curated project cards with live repositories fetched from GitHub REST API.
-   * Dynamically binds exact repository URLs and verified homepage demo URLs.
-   */
   function reconcileWithGitHub(repos) {
     if (!Array.isArray(repos) || repos.length === 0) return;
 
@@ -303,6 +330,7 @@
 
   window.PortfolioProjects = {
     init: init,
+    filterByCategory: filterByCategory,
     reconcileWithGitHub: reconcileWithGitHub
   };
 })();

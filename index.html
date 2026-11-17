@@ -27,13 +27,16 @@
   <meta name="twitter:title" content="Adarsh Anumula | Software Engineer — .NET, Python &amp; AI/ML">
   <meta name="twitter:description" content="Software Engineer experienced in .NET enterprise systems and applied AI/ML solutions (Python, FastAPI, LLMs, RAG).">
 
-  <!-- Inline SVG Data URI Favicon (Zero external asset failure risk) -->
+  <!-- Inline SVG Data URI Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f172a'/%3E%3Crect x='2' y='2' width='60' height='60' rx='12' fill='none' stroke='%2338bdf8' stroke-width='2' stroke-opacity='0.4'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui, sans-serif' font-weight='800' font-size='26' fill='%2338bdf8'%3EAA%3C/text%3E%3C/svg%3E">
 
   <!-- Google Fonts with Resilient Fallback -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet">
+
+  <!-- Tippy.js Base & Animation Stylesheet (Upgrade #6) -->
+  <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/shift-away.css">
 
   <!-- Early Theme Initialization to Prevent Flash of Unstyled Theme -->
   <script>
@@ -83,8 +86,14 @@
       </nav>
 
       <div class="nav-actions">
-        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch color theme" title="Toggle Light/Dark Mode">
-          <!-- Sun Icon (shown in dark mode to switch to light) -->
+        <!-- Upgrade #6: Command Palette Trigger Button -->
+        <button type="button" class="cmd-trigger-btn" id="cmd-trigger-btn" aria-label="Open Command Palette (Ctrl+K)" data-tippy-content="Quick Command Palette (Ctrl + K)">
+          <i data-lucide="terminal" class="icon icon-xs"></i>
+          <span class="cmd-trigger-label">Command</span>
+          <kbd class="cmd-kbd">Ctrl K</kbd>
+        </button>
+
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch color theme" data-tippy-content="Toggle Light / Dark Theme">
           <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="12" cy="12" r="5"></circle>
             <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -96,19 +105,14 @@
             <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
             <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
           </svg>
-          <!-- Moon Icon (shown in light mode to switch to dark) -->
           <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
           </svg>
         </button>
 
-        <a href="./assets/resume.pdf" download="Adarsh_Anumula_Resume.pdf" class="btn btn-sm btn-outline nav-resume-btn">
+        <a href="./assets/resume.pdf" download="Adarsh_Anumula_Resume.pdf" class="btn btn-sm btn-outline nav-resume-btn" data-tippy-content="Download Verified PDF Resume">
           <span>Resume</span>
-          <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-            <polyline points="7 10 12 15 17 10"></polyline>
-            <line x1="12" y1="15" x2="12" y2="3"></line>
-          </svg>
+          <i data-lucide="download" class="icon icon-xs"></i>
         </a>
 
         <button type="button" class="mobile-menu-toggle" id="mobile-menu-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation menu">
@@ -126,8 +130,11 @@
   <main id="main-content">
     <!-- ==================== B. HERO SECTION ==================== -->
     <section id="home" class="hero-section section-spy">
+      <!-- Upgrade #4: Interactive tsParticles Neural/Node Canvas Background -->
+      <div id="hero-particles" class="hero-particles-canvas" aria-hidden="true"></div>
+
       <div class="container hero-grid">
-        <div class="hero-content">
+        <div class="hero-content gs-reveal">
           <div class="status-pill">
             <span class="status-dot" aria-hidden="true"></span>
             <span>Associate Software Engineer @ Proclink Consulting Services &bull; IIT Guwahati CSE '25</span>
@@ -141,6 +148,12 @@
             Software Engineer <span class="headline-divider">|</span> .NET <span class="headline-divider">|</span> Python <span class="headline-divider">|</span> AI/ML
           </p>
 
+          <!-- Upgrade #4: Dynamic Typed.js Specialty Line with Accessible Fallback -->
+          <div class="hero-typed-wrapper" aria-live="polite">
+            <span class="typed-prefix">&gt;</span>
+            <span id="typed-specialty" class="typed-text">Architecting Enterprise ASP.NET Core 8 &amp; SQL Server Systems</span>
+          </div>
+
           <p class="hero-description">
             Software Engineer focused on architecting reliable enterprise web applications in C# and ASP.NET while engineering intelligent software systems using Python, FastAPI, Machine Learning, and Retrieval-Augmented Generation (RAG).
           </p>
@@ -148,23 +161,14 @@
           <div class="hero-cta-group">
             <a href="#projects" class="btn btn-primary">
               <span>View My Projects</span>
-              <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
+              <i data-lucide="arrow-right" class="icon icon-sm"></i>
             </a>
             <a href="#github" class="btn btn-secondary">
-              <svg class="icon icon-sm" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
-              </svg>
+              <i data-lucide="github" class="icon icon-sm"></i>
               <span>Explore My GitHub</span>
             </a>
             <a href="./assets/resume.pdf" download="Adarsh_Anumula_Resume.pdf" class="btn btn-outline">
-              <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                <polyline points="7 10 12 15 17 10"></polyline>
-                <line x1="12" y1="15" x2="12" y2="3"></line>
-              </svg>
+              <i data-lucide="file-down" class="icon icon-sm"></i>
               <span>Download Resume</span>
             </a>
             <a href="#contact" class="btn btn-ghost">
@@ -174,35 +178,34 @@
 
           <div class="hero-meta-strip">
             <div class="hero-social-links" aria-label="Professional profiles">
-              <a href="https://github.com/adarshanumula7" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="GitHub profile: adarshanumula7">
-                <svg class="icon icon-sm" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
-                </svg>
+              <a href="https://github.com/adarshanumula7" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="GitHub profile: adarshanumula7" data-tippy-content="Explore @adarshanumula7 on GitHub">
+                <i data-lucide="github" class="icon icon-sm"></i>
                 <span>github.com/adarshanumula7</span>
               </a>
-              <a href="https://www.linkedin.com/in/adarsh-anumula-4b0293228/" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="LinkedIn profile: Adarsh Anumula">
-                <svg class="icon icon-sm" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"></path>
-                </svg>
+              <a href="https://www.linkedin.com/in/adarsh-anumula-4b0293228/" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="LinkedIn profile: Adarsh Anumula" data-tippy-content="Connect on LinkedIn">
+                <i data-lucide="linkedin" class="icon icon-sm"></i>
                 <span>LinkedIn</span>
               </a>
-              <a href="mailto:anumulaadarsh6@gmail.com" class="social-pill" aria-label="Email Adarsh Anumula">
-                <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                  <polyline points="22,6 12,13 2,6"></polyline>
-                </svg>
+              <a href="mailto:anumulaadarsh6@gmail.com" class="social-pill" aria-label="Email Adarsh Anumula" data-tippy-content="Send direct email">
+                <i data-lucide="mail" class="icon icon-sm"></i>
                 <span>anumulaadarsh6@gmail.com</span>
               </a>
             </div>
           </div>
         </div>
 
-        <!-- Abstract Typographic & Architectural Visual Treatment (No Fake Profile Photo) -->
-        <div class="hero-visual" aria-hidden="true">
-          <div class="arch-card">
+        <!-- Upgrade #3: 3D Tilt & Spotlight Architectural Blueprint Card -->
+        <div class="hero-visual gs-reveal" aria-hidden="true">
+          <div class="arch-card spotlight-card" id="hero-arch-card" data-tilt data-tilt-max="6" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.12">
             <div class="arch-card-header">
-              <span class="arch-badge">ENGINEERING ARCHITECTURE PROFILE</span>
-              <span class="arch-location">Hyderabad, IN</span>
+              <span class="arch-badge">
+                <i data-lucide="layers" class="icon icon-xs"></i>
+                ENGINEERING ARCHITECTURE PROFILE
+              </span>
+              <span class="arch-location">
+                <i data-lucide="map-pin" class="icon icon-xs"></i>
+                Hyderabad, IN
+              </span>
             </div>
 
             <div class="arch-diagram">
@@ -214,7 +217,7 @@
                   <span class="arch-chip">C# / ASP.NET Core 8</span>
                   <span class="arch-chip">ASP.NET MVC</span>
                   <span class="arch-chip">SQL Server &amp; Stored Procs</span>
-                  <span class="arch-chip">RBAC &amp; JWT Auth</span>
+                  <span class="arch-chip">RBAC</span>
                 </div>
               </div>
 
@@ -259,18 +262,18 @@
     <!-- ==================== C. ABOUT ME SECTION ==================== -->
     <section id="about" class="section section-spy">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header gs-reveal">
           <span class="section-eyebrow">01 / Background &amp; Focus</span>
           <h2 class="section-title">About Adarsh</h2>
         </div>
 
         <div class="about-grid">
-          <div class="about-prose">
+          <div class="about-prose gs-reveal">
             <p class="lead-paragraph">
               Adarsh Anumula is a Software Engineer based in Hyderabad, India, combining a Computer Science and Engineering foundation from the <strong>Indian Institute of Technology Guwahati (IIT Guwahati)</strong> with hands-on production experience in enterprise web application development.
             </p>
             <p>
-              In the current role as an <strong>Associate Software Engineer at Proclink Consulting Services</strong> (July 2025–Present), engineering responsibilities center on designing and maintaining database-driven enterprise web applications using <strong>C#, ASP.NET Core 8, ASP.NET MVC, Razor, ADO.NET, Kendo UI MVC, and SQL Server</strong>. Daily engineering work involves implementing dynamic module configuration, role-based access control (RBAC), JWT-secured authentication flows, hierarchical main and sub-tab navigation systems, and multi-stage reviewer/approver workflows backed by optimized SQL Server stored procedures.
+              In the current role as an <strong>Associate Software Engineer at Proclink Consulting Services</strong> (July 2025–Present), engineering responsibilities center on designing and maintaining database-driven enterprise web applications using <strong>C#, ASP.NET Core 8, ASP.NET MVC, Razor, ADO.NET, Kendo UI MVC, and SQL Server</strong>. Daily engineering work involves implementing dynamic module configuration, role-based access control (RBAC), hierarchical main and sub-tab navigation systems, and multi-stage reviewer/approver workflows backed by optimized SQL Server stored procedures.
             </p>
             <p>
               Alongside conventional enterprise backend engineering, ongoing project work focuses on <strong>Python backend services, Machine Learning, and Generative AI</strong>. This includes building asynchronous job-processing microservices with FastAPI, developing Retrieval-Augmented Generation (RAG) developer assistants and automated code review platforms using Large Language Models (LLMs), and training gradient-boosted classification pipelines (Scikit-learn, XGBoost, LightGBM) on complex tabular datasets.
@@ -278,13 +281,9 @@
           </div>
 
           <div class="about-pillars">
-            <article class="pillar-card">
+            <article class="pillar-card spotlight-card gs-reveal">
               <div class="pillar-icon" aria-hidden="true">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                  <line x1="8" y1="21" x2="16" y2="21"></line>
-                  <line x1="12" y1="17" x2="12" y2="21"></line>
-                </svg>
+                <i data-lucide="monitor-cog" class="icon"></i>
               </div>
               <div>
                 <h3 class="pillar-title">Enterprise .NET Engineering</h3>
@@ -292,12 +291,9 @@
               </div>
             </article>
 
-            <article class="pillar-card">
+            <article class="pillar-card spotlight-card gs-reveal">
               <div class="pillar-icon" aria-hidden="true">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="16 18 22 12 16 6"></polyline>
-                  <polyline points="8 6 2 12 8 18"></polyline>
-                </svg>
+                <i data-lucide="cpu" class="icon"></i>
               </div>
               <div>
                 <h3 class="pillar-title">Applied AI &amp; LLM Systems</h3>
@@ -305,13 +301,9 @@
               </div>
             </article>
 
-            <article class="pillar-card">
+            <article class="pillar-card spotlight-card gs-reveal">
               <div class="pillar-icon" aria-hidden="true">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-                  <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
-                  <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
-                </svg>
+                <i data-lucide="database" class="icon"></i>
               </div>
               <div>
                 <h3 class="pillar-title">Data &amp; Algorithmic Foundations</h3>
@@ -326,15 +318,15 @@
     <!-- ==================== D. TECHNICAL SKILLS SECTION ==================== -->
     <section id="skills" class="section section-alt section-spy">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header gs-reveal">
           <span class="section-eyebrow">02 / Technical Stack</span>
           <h2 class="section-title">Technical Skills &amp; Provenance</h2>
           <p class="section-subtitle">
-            Skills are organized by functional domain and labeled by provenance to distinguish production enterprise work from personal and academic project implementations.
+            Skills are organized by functional domain and labeled by provenance to distinguish production enterprise work from personal and academic project implementations. Hover over any tag to inspect its context.
           </p>
         </div>
 
-        <div class="skills-legend" aria-label="Skill provenance key">
+        <div class="skills-legend gs-reveal" aria-label="Skill provenance key">
           <span class="legend-item">
             <span class="provenance-dot provenance-prod" aria-hidden="true"></span>
             <span><strong>Production Enterprise:</strong> Applied in professional work at Proclink Consulting Services</span>
@@ -347,107 +339,89 @@
 
         <div class="skills-grid">
           <!-- Category 1: Programming Languages -->
-          <article class="skill-card">
+          <article class="skill-card spotlight-card gs-reveal">
             <div class="skill-card-header">
-              <svg class="icon skill-cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <polyline points="4 17 10 11 4 5"></polyline>
-                <line x1="12" y1="19" x2="20" y2="19"></line>
-              </svg>
+              <i data-lucide="code-2" class="icon skill-cat-icon"></i>
               <h3 class="skill-card-title">Programming Languages</h3>
             </div>
             <p class="skill-card-context">Core languages used across enterprise backend development, data pipelines, and algorithmic coursework.</p>
             <ul class="skill-tag-list" aria-label="Programming Languages">
-              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>C#</li>
-              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>SQL</li>
-              <li class="skill-tag" data-provenance="proj"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>Python</li>
-              <li class="skill-tag" data-provenance="proj"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>C++</li>
-              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>JavaScript (ES6+)</li>
+              <li class="skill-tag" data-provenance="prod" data-tippy-content="Production Enterprise: Primary backend language at Proclink Consulting Services"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>C#</li>
+              <li class="skill-tag" data-provenance="prod" data-tippy-content="Production Enterprise: SQL Server queries &amp; Stored Procedures"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>SQL</li>
+              <li class="skill-tag" data-provenance="proj" data-tippy-content="Project &amp; Academic: FastAPI microservices, ML pipelines, and LLM/RAG applications"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>Python</li>
+              <li class="skill-tag" data-provenance="proj" data-tippy-content="Project &amp; Academic: Data Structures &amp; Algorithms at IIT Guwahati"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>C++</li>
+              <li class="skill-tag" data-provenance="prod" data-tippy-content="Production Enterprise: Interactive client-side UI logic &amp; REST API integration"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>JavaScript (ES6+)</li>
             </ul>
           </article>
 
           <!-- Category 2: Backend & Web Development -->
-          <article class="skill-card">
+          <article class="skill-card spotlight-card gs-reveal">
             <div class="skill-card-header">
-              <svg class="icon skill-cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
-                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
-                <line x1="6" y1="6" x2="6.01" y2="6"></line>
-                <line x1="6" y1="18" x2="6.01" y2="18"></line>
-              </svg>
+              <i data-lucide="server" class="icon skill-cat-icon"></i>
               <h3 class="skill-card-title">Backend &amp; Web Development</h3>
             </div>
             <p class="skill-card-context">Enterprise .NET web frameworks, authentication architectures, and asynchronous Python API services.</p>
             <ul class="skill-tag-list" aria-label="Backend and Web Development">
-              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>ASP.NET Core 8</li>
-              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>ASP.NET MVC</li>
-              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>ADO.NET</li>
-              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>Razor Views</li>
-              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>Kendo UI MVC</li>
-              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>JWT Authentication</li>
-              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>Role-Based Access Control (RBAC)</li>
-              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>REST APIs</li>
-              <li class="skill-tag" data-provenance="proj"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>FastAPI</li>
-              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>HTML5 &amp; CSS3</li>
+              <li class="skill-tag" data-provenance="prod" data-tippy-content="Production Enterprise: Modern .NET web application architecture"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>ASP.NET Core 8</li>
+              <li class="skill-tag" data-provenance="prod" data-tippy-content="Production Enterprise: Model-View-Controller enterprise web modules"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>ASP.NET MVC</li>
+              <li class="skill-tag" data-provenance="prod" data-tippy-content="Production Enterprise: High-performance relational data access layer"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>ADO.NET</li>
+              <li class="skill-tag" data-provenance="prod" data-tippy-content="Production Enterprise: Server-side dynamic view rendering"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>Razor Views</li>
+              <li class="skill-tag" data-provenance="prod" data-tippy-content="Production Enterprise: Enterprise data grids and interactive UI components"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>Kendo UI MVC</li>
+              <li class="skill-tag" data-provenance="prod" data-tippy-content="Production Enterprise: Stateless token-based security &amp; session validation"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>JWT Authentication</li>
+              <li class="skill-tag" data-provenance="prod" data-tippy-content="Production Enterprise: Multi-tier role &amp; permission enforcement"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>Role-Based Access Control (RBAC)</li>
+              <li class="skill-tag" data-provenance="prod" data-tippy-content="Production Enterprise &amp; Projects: Structured HTTP service contracts"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>REST APIs</li>
+              <li class="skill-tag" data-provenance="proj" data-tippy-content="Project Implementation: Asynchronous Python microservices &amp; AI endpoints"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>FastAPI</li>
+              <li class="skill-tag" data-provenance="prod" data-tippy-content="Production Enterprise: Semantic markup and responsive layout architecture"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>HTML5 &amp; CSS3</li>
             </ul>
           </article>
 
           <!-- Category 3: Database Systems -->
-          <article class="skill-card">
+          <article class="skill-card spotlight-card gs-reveal">
             <div class="skill-card-header">
-              <svg class="icon skill-cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
-                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
-              </svg>
+              <i data-lucide="database-zap" class="icon skill-cat-icon"></i>
               <h3 class="skill-card-title">Database &amp; Persistence</h3>
             </div>
-            <p class="skill-card-context">Relational schema modeling, stored procedure encapsulates, and database-driven UI configuration.</p>
+            <p class="skill-card-context">Relational schema modeling, stored procedure encapsulation, and database-driven UI configuration.</p>
             <ul class="skill-tag-list" aria-label="Database Skills">
-              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>Microsoft SQL Server</li>
-              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>Stored Procedures</li>
-              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>Relational Database Design</li>
-              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>Database-Driven UI Configuration</li>
+              <li class="skill-tag" data-provenance="prod" data-tippy-content="Production Enterprise: Primary relational database engine at Proclink"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>Microsoft SQL Server</li>
+              <li class="skill-tag" data-provenance="prod" data-tippy-content="Production Enterprise: Encapsulated transactional business logic &amp; workflows"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>Stored Procedures</li>
+              <li class="skill-tag" data-provenance="prod" data-tippy-content="Production Enterprise: Normalized schema design for role &amp; workflow state"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>Relational Database Design</li>
+              <li class="skill-tag" data-provenance="prod" data-tippy-content="Production Enterprise: Dynamic main/sub-tab and module rendering from DB metadata"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>Database-Driven UI Configuration</li>
             </ul>
           </article>
 
           <!-- Category 4: AI, Machine Learning & GenAI -->
-          <article class="skill-card">
+          <article class="skill-card spotlight-card gs-reveal">
             <div class="skill-card-header">
-              <svg class="icon skill-cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"></path>
-                <path d="M16 14h2a4 4 0 0 1 4 4v2H2v-2a4 4 0 0 1 4-4h2"></path>
-                <circle cx="12" cy="14" r="4"></circle>
-              </svg>
+              <i data-lucide="brain-circuit" class="icon skill-cat-icon"></i>
               <h3 class="skill-card-title">AI, Machine Learning &amp; GenAI</h3>
             </div>
             <p class="skill-card-context">Supervised learning pipelines, gradient boosting on imbalanced data, and LLM/RAG application design.</p>
             <ul class="skill-tag-list" aria-label="AI and Machine Learning">
-              <li class="skill-tag" data-provenance="proj"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>Generative AI &amp; LLMs</li>
-              <li class="skill-tag" data-provenance="proj"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>Retrieval-Augmented Generation (RAG)</li>
-              <li class="skill-tag" data-provenance="proj"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>Prompt Engineering</li>
-              <li class="skill-tag" data-provenance="proj"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>Machine Learning Classification</li>
-              <li class="skill-tag" data-provenance="proj"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>Scikit-learn</li>
-              <li class="skill-tag" data-provenance="proj"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>XGBoost &amp; LightGBM</li>
-              <li class="skill-tag" data-provenance="proj"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>NumPy &amp; Pandas</li>
+              <li class="skill-tag" data-provenance="proj" data-tippy-content="Project Implementation: AI Code Review &amp; Developer Assistant systems"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>Generative AI &amp; LLMs</li>
+              <li class="skill-tag" data-provenance="proj" data-tippy-content="Project Implementation: Grounded document &amp; codebase retrieval pipelines"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>Retrieval-Augmented Generation (RAG)</li>
+              <li class="skill-tag" data-provenance="proj" data-tippy-content="Project Implementation: Structured system prompts &amp; few-shot reasoning"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>Prompt Engineering</li>
+              <li class="skill-tag" data-provenance="proj" data-tippy-content="Project Implementation: Supervised tabular classification &amp; evaluation"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>Machine Learning Classification</li>
+              <li class="skill-tag" data-provenance="proj" data-tippy-content="Project Implementation: Cross-validation, preprocessing &amp; baseline modeling"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>Scikit-learn</li>
+              <li class="skill-tag" data-provenance="proj" data-tippy-content="Project Implementation: Gradient-boosted trees on Porto Seguro dataset"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>XGBoost &amp; LightGBM</li>
+              <li class="skill-tag" data-provenance="proj" data-tippy-content="Project Implementation: Vectorized data manipulation &amp; feature engineering"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>NumPy &amp; Pandas</li>
             </ul>
           </article>
 
           <!-- Category 5: Developer Tools & Infrastructure -->
-          <article class="skill-card">
+          <article class="skill-card spotlight-card gs-reveal">
             <div class="skill-card-header">
-              <svg class="icon skill-cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
-              </svg>
+              <i data-lucide="wrench" class="icon skill-cat-icon"></i>
               <h3 class="skill-card-title">Tools &amp; Deployment</h3>
             </div>
             <p class="skill-card-context">Development environments, version control, web server hosting, and API testing utilities.</p>
             <ul class="skill-tag-list" aria-label="Tools and Technologies">
-              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>Visual Studio 2022</li>
-              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>IIS (Internet Information Services)</li>
-              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>Git &amp; GitHub</li>
-              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>VS Code</li>
-              <li class="skill-tag" data-provenance="prod"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>Postman</li>
-              <li class="skill-tag" data-provenance="proj"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>Docker</li>
+              <li class="skill-tag" data-provenance="prod" data-tippy-content="Production Enterprise: Primary IDE for C# and ASP.NET debugging"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>Visual Studio 2022</li>
+              <li class="skill-tag" data-provenance="prod" data-tippy-content="Production Enterprise: Windows web server deployment &amp; hosting"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>IIS (Internet Information Services)</li>
+              <li class="skill-tag" data-provenance="prod" data-tippy-content="Production Enterprise &amp; Open Source: Source control &amp; repository management"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>Git &amp; GitHub</li>
+              <li class="skill-tag" data-provenance="prod" data-tippy-content="Production &amp; Projects: Lightweight editor for Python and frontend development"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>VS Code</li>
+              <li class="skill-tag" data-provenance="prod" data-tippy-content="Production Enterprise: REST endpoint &amp; JWT payload testing"><span class="provenance-dot provenance-prod" aria-hidden="true"></span>Postman</li>
+              <li class="skill-tag" data-provenance="proj" data-tippy-content="Project Implementation: Containerized Python &amp; FastAPI services"><span class="provenance-dot provenance-proj" aria-hidden="true"></span>Docker</li>
             </ul>
           </article>
         </div>
@@ -457,7 +431,7 @@
     <!-- ==================== E. PROFESSIONAL EXPERIENCE SECTION ==================== -->
     <section id="experience" class="section section-spy">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header gs-reveal">
           <span class="section-eyebrow">03 / Career History</span>
           <h2 class="section-title">Professional Experience</h2>
           <p class="section-subtitle">
@@ -465,10 +439,15 @@
           </p>
         </div>
 
-        <div class="timeline">
-          <article class="timeline-item">
+        <div class="timeline" id="experience-timeline">
+          <!-- Upgrade #1: Scroll-driven animated progress line -->
+          <div class="timeline-progress-track" aria-hidden="true">
+            <div class="timeline-progress-bar" id="timeline-progress-bar"></div>
+          </div>
+
+          <article class="timeline-item gs-reveal">
             <div class="timeline-marker" aria-hidden="true"></div>
-            <div class="timeline-card">
+            <div class="timeline-card spotlight-card">
               <div class="timeline-card-header">
                 <div>
                   <span class="timeline-badge">Current Role</span>
@@ -478,6 +457,7 @@
                   </p>
                 </div>
                 <div class="timeline-period">
+                  <i data-lucide="calendar" class="icon icon-xs"></i>
                   <time datetime="2025-07">July 2025</time> &ndash; Present
                 </div>
               </div>
@@ -494,7 +474,7 @@
                   <strong>Database-Driven UI &amp; Dynamic Module Configuration:</strong> Architected database-backed module configuration and hierarchical <strong>main/sub-tab management systems</strong>, allowing application layouts, navigation trees, and form behaviors to adapt dynamically via metadata stored in <strong>SQL Server</strong> rather than hardcoded view logic.
                 </li>
                 <li>
-                  <strong>Authentication &amp; Role-Based Access Control (RBAC):</strong> Implemented <strong>JWT Authentication</strong> and granular <strong>Role-Based Access Control (RBAC)</strong> policies across controllers and UI views, enforcing strict permission boundaries for diverse organizational roles.
+                  <strong>Authentication &amp; Role-Based Access Control (RBAC):</strong> Implemented granular <strong>Role-Based Access Control (RBAC)</strong> policies across controllers and UI views, enforcing strict permission boundaries for diverse organizational roles.
                 </li>
                 <li>
                   <strong>Multi-Stage Reviewer &amp; Approver Workflows:</strong> Built stateful <strong>reviewer and approver workflow engines</strong> supporting multi-tier submission validation, status transitions, audit logging, and role-gated action triggers.
@@ -527,7 +507,7 @@
     <!-- ==================== F. FEATURED PROJECTS SECTION ==================== -->
     <section id="projects" class="section section-alt section-spy">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header gs-reveal">
           <span class="section-eyebrow">04 / Engineering Portfolio</span>
           <h2 class="section-title">Featured Projects &amp; Systems</h2>
           <p class="section-subtitle">
@@ -536,7 +516,7 @@
         </div>
 
         <!-- Project Category Filter Bar -->
-        <div class="filter-bar" role="toolbar" aria-label="Filter featured projects by technology category">
+        <div class="filter-bar gs-reveal" role="toolbar" aria-label="Filter featured projects by technology category">
           <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">All Projects</button>
           <button type="button" class="filter-btn" data-filter="genai" aria-pressed="false">Generative AI</button>
           <button type="button" class="filter-btn" data-filter="aiml" aria-pressed="false">AI/ML</button>
@@ -545,7 +525,7 @@
           <button type="button" class="filter-btn" data-filter="web" aria-pressed="false">Web Development</button>
         </div>
 
-        <!-- Featured Projects Grid (Populated and filtered by js/projects.js) -->
+        <!-- Featured Projects Grid (Populated, Auto-Animated, and Tilt-enabled by js/projects.js) -->
         <div class="projects-grid" id="featured-projects-grid" aria-live="polite"></div>
       </div>
     </section>
@@ -553,17 +533,17 @@
     <!-- ==================== G. GITHUB INTEGRATION SECTION ==================== -->
     <section id="github" class="section section-spy">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header gs-reveal">
           <span class="section-eyebrow">05 / Live Open-Source Index</span>
-          <h2 class="section-title">GitHub Repository Explorer</h2>
+          <h2 class="section-title">GitHub Repository Explorer &amp; Visual Analytics</h2>
           <p class="section-subtitle">
-            Dynamically fetched in real time from the public GitHub REST API for <code>adarshanumula7</code>. Includes all public owned and forked repositories with client-side caching, search, language filtering, and multi-criteria sorting.
+            Dynamically fetched in real time from the public GitHub REST API for <code>adarshanumula7</code>. Includes all public owned and forked repositories with live Chart.js telemetry, client-side caching, search, language filtering, and multi-criteria sorting.
           </p>
         </div>
 
         <!-- Dynamic GitHub Overview Dashboard -->
-        <div class="gh-dashboard" aria-label="GitHub account statistics">
-          <div class="gh-stat-card gh-profile-card">
+        <div class="gh-dashboard gs-reveal" aria-label="GitHub account statistics">
+          <div class="gh-stat-card gh-profile-card spotlight-card">
             <div class="gh-stat-label">GitHub Account</div>
             <div class="gh-stat-value gh-username">
               <a href="https://github.com/adarshanumula7" target="_blank" rel="noopener noreferrer" id="gh-stat-profile-link">
@@ -573,33 +553,59 @@
             <div class="gh-stat-meta" id="gh-cache-status">Connecting to GitHub REST API...</div>
           </div>
 
-          <div class="gh-stat-card">
+          <div class="gh-stat-card spotlight-card">
             <div class="gh-stat-label">Public Repositories</div>
             <div class="gh-stat-value" id="gh-stat-repos">&mdash;</div>
             <div class="gh-stat-meta">Owned &amp; public forks</div>
           </div>
 
-          <div class="gh-stat-card">
+          <div class="gh-stat-card spotlight-card">
             <div class="gh-stat-label">Total Stars</div>
             <div class="gh-stat-value" id="gh-stat-stars">&mdash;</div>
             <div class="gh-stat-meta">Across retrieved repos</div>
           </div>
 
-          <div class="gh-stat-card">
+          <div class="gh-stat-card spotlight-card">
             <div class="gh-stat-label">Total Forks</div>
             <div class="gh-stat-value" id="gh-stat-forks">&mdash;</div>
             <div class="gh-stat-meta">Community &amp; network forks</div>
           </div>
         </div>
 
+        <!-- Upgrade #2: Live Chart.js GitHub Data Visualizations -->
+        <div class="gh-analytics-grid gs-reveal" id="gh-analytics-panel" aria-label="Live GitHub visual analytics">
+          <div class="gh-chart-card spotlight-card">
+            <div class="gh-chart-header">
+              <div>
+                <h3 class="gh-chart-title">Primary Language Distribution</h3>
+                <p class="gh-chart-subtitle">Breakdown across all public repositories</p>
+              </div>
+              <i data-lucide="pie-chart" class="icon icon-sm gh-chart-icon"></i>
+            </div>
+            <div class="gh-chart-canvas-wrap">
+              <canvas id="gh-lang-chart" aria-label="Doughnut chart of GitHub repository programming languages"></canvas>
+            </div>
+          </div>
+
+          <div class="gh-chart-card spotlight-card">
+            <div class="gh-chart-header">
+              <div>
+                <h3 class="gh-chart-title">Repository Codebase Footprint (KB)</h3>
+                <p class="gh-chart-subtitle">Top 6 repositories by codebase size &amp; activity</p>
+              </div>
+              <i data-lucide="bar-chart-3" class="icon icon-sm gh-chart-icon"></i>
+            </div>
+            <div class="gh-chart-canvas-wrap">
+              <canvas id="gh-repo-chart" aria-label="Horizontal bar chart of top GitHub repositories"></canvas>
+            </div>
+          </div>
+        </div>
+
         <!-- Search, Filter, and Sort Controls -->
-        <div class="gh-controls" aria-label="Search and filter GitHub repositories">
+        <div class="gh-controls gs-reveal" aria-label="Search and filter GitHub repositories">
           <div class="gh-search-wrap">
             <label for="gh-search-input" class="sr-only">Search repositories by name, description, or topic</label>
-            <svg class="icon gh-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
+            <i data-lucide="search" class="icon gh-search-icon"></i>
             <input type="search" id="gh-search-input" class="gh-input" placeholder="Search by repository name, description, or topic..." autocomplete="off">
           </div>
 
@@ -624,12 +630,8 @@
               Clear Filters
             </button>
 
-            <button type="button" id="gh-refresh-btn" class="btn btn-sm btn-ghost" title="Force refresh from GitHub API">
-              <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <polyline points="23 4 23 10 17 10"></polyline>
-                <polyline points="1 20 1 14 7 14"></polyline>
-                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
-              </svg>
+            <button type="button" id="gh-refresh-btn" class="btn btn-sm btn-ghost" data-tippy-content="Bypass cache and fetch fresh data from GitHub API">
+              <i data-lucide="refresh-cw" class="icon icon-xs"></i>
               <span>Refresh</span>
             </button>
           </div>
@@ -681,7 +683,7 @@
         <!-- Live Repository Cards Container -->
         <div id="gh-repo-grid" class="gh-repo-grid" aria-live="polite" hidden></div>
 
-        <!-- UI Pagination Controls (When repository count exceeds page view limit) -->
+        <!-- UI Pagination Controls -->
         <div id="gh-pagination" class="gh-pagination" hidden aria-label="Repository list pagination"></div>
       </div>
     </section>
@@ -689,16 +691,16 @@
     <!-- ==================== H. EDUCATION & I. ACHIEVEMENTS SECTION ==================== -->
     <section id="education" class="section section-alt section-spy">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header gs-reveal">
           <span class="section-eyebrow">06 / Academic Credentials &amp; Honors</span>
           <h2 class="section-title">Education &amp; Verified Achievements</h2>
         </div>
 
         <div class="edu-achieve-grid">
           <!-- Education Column -->
-          <div class="edu-column">
+          <div class="edu-column gs-reveal">
             <h3 class="column-heading">Academic Degree</h3>
-            <article class="edu-card">
+            <article class="edu-card spotlight-card">
               <div class="edu-card-top">
                 <div>
                   <span class="edu-type-badge">Undergraduate Degree</span>
@@ -711,7 +713,7 @@
               <div class="edu-metrics-row">
                 <div class="edu-metric-box">
                   <span class="edu-metric-label">CGPA</span>
-                  <span class="edu-metric-val">6.51 <small>/ 10.0</small></span>
+                  <span class="edu-metric-val"><span id="edu-cgpa-counter" data-target="6.51">6.51</span> <small>/ 10.0</small></span>
                 </div>
                 <div class="edu-metric-box">
                   <span class="edu-metric-label">Department</span>
@@ -730,11 +732,11 @@
           </div>
 
           <!-- Achievements Column -->
-          <div class="achieve-column">
+          <div class="achieve-column gs-reveal">
             <h3 class="column-heading">Competitive Examinations &amp; Honors</h3>
             <div class="achieve-list">
-              <article class="achieve-card">
-                <div class="achieve-rank-badge">AIR 1529</div>
+              <article class="achieve-card spotlight-card">
+                <div class="achieve-rank-badge">AIR <span id="jee-rank-counter" data-target="1529">1529</span></div>
                 <div class="achieve-body">
                   <h4 class="achieve-title">Joint Entrance Examination (JEE) Advanced 2021</h4>
                   <p class="achieve-desc">
@@ -743,7 +745,7 @@
                 </div>
               </article>
 
-              <article class="achieve-card">
+              <article class="achieve-card spotlight-card">
                 <div class="achieve-rank-badge">Top 1%</div>
                 <div class="achieve-body">
                   <h4 class="achieve-title">JEE (Main) 2021 National Qualification</h4>
@@ -753,7 +755,7 @@
                 </div>
               </article>
 
-              <article class="achieve-card">
+              <article class="achieve-card spotlight-card">
                 <div class="achieve-rank-badge">IITG CSE</div>
                 <div class="achieve-body">
                   <h4 class="achieve-title">B.Tech Computer Science Selection &amp; Conferral</h4>
@@ -771,7 +773,7 @@
     <!-- ==================== J. CONTACT SECTION ==================== -->
     <section id="contact" class="section section-spy">
       <div class="container">
-        <div class="contact-card">
+        <div class="contact-card spotlight-card gs-reveal">
           <div class="contact-content">
             <span class="section-eyebrow">07 / Direct Channels</span>
             <h2 class="section-title">Get in Touch</h2>
@@ -780,10 +782,7 @@
             </p>
 
             <div class="contact-location">
-              <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                <circle cx="12" cy="10" r="3"></circle>
-              </svg>
+              <i data-lucide="map-pin" class="icon icon-sm"></i>
               <span>Hyderabad, Telangana, India</span>
             </div>
           </div>
@@ -791,10 +790,7 @@
           <div class="contact-links-grid">
             <a href="mailto:anumulaadarsh6@gmail.com" class="contact-channel-card">
               <div class="channel-icon-wrap" aria-hidden="true">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                  <polyline points="22,6 12,13 2,6"></polyline>
-                </svg>
+                <i data-lucide="mail" class="icon"></i>
               </div>
               <div class="channel-details">
                 <span class="channel-label">Professional Email</span>
@@ -805,9 +801,7 @@
 
             <a href="https://github.com/adarshanumula7" target="_blank" rel="noopener noreferrer" class="contact-channel-card">
               <div class="channel-icon-wrap" aria-hidden="true">
-                <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
-                </svg>
+                <i data-lucide="github" class="icon"></i>
               </div>
               <div class="channel-details">
                 <span class="channel-label">GitHub Profile</span>
@@ -818,9 +812,7 @@
 
             <a href="https://www.linkedin.com/in/adarsh-anumula-4b0293228/" target="_blank" rel="noopener noreferrer" class="contact-channel-card">
               <div class="channel-icon-wrap" aria-hidden="true">
-                <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"></path>
-                </svg>
+                <i data-lucide="linkedin" class="icon"></i>
               </div>
               <div class="channel-details">
                 <span class="channel-label">LinkedIn Network</span>
@@ -831,12 +823,7 @@
 
             <a href="./assets/resume.pdf" download="Adarsh_Anumula_Resume.pdf" class="contact-channel-card">
               <div class="channel-icon-wrap" aria-hidden="true">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <polyline points="14 2 14 8 20 8"></polyline>
-                  <line x1="12" y1="18" x2="12" y2="12"></line>
-                  <polyline points="9 15 12 18 15 15"></polyline>
-                </svg>
+                <i data-lucide="file-text" class="icon"></i>
               </div>
               <div class="channel-details">
                 <span class="channel-label">Curriculum Vitae</span>
@@ -849,6 +836,24 @@
       </div>
     </section>
   </main>
+
+  <!-- ==================== UPGRADE #6: DEVELOPER COMMAND PALETTE (CTRL+K) ==================== -->
+  <div class="cmd-modal-overlay" id="cmd-modal-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="cmd-modal-title">
+    <div class="cmd-modal">
+      <div class="cmd-modal-header">
+        <i data-lucide="search" class="icon icon-sm cmd-search-icon"></i>
+        <label for="cmd-input" id="cmd-modal-title" class="sr-only">Quick Command Search</label>
+        <input type="text" id="cmd-input" class="cmd-input" placeholder="Type a command or jump to section (e.g., Projects, GitHub, Resume, Theme)..." autocomplete="off">
+        <button type="button" class="cmd-close-btn" id="cmd-close-btn" aria-label="Close Command Palette">ESC</button>
+      </div>
+      <ul class="cmd-list" id="cmd-list" role="listbox" aria-label="Available commands"></ul>
+      <div class="cmd-modal-footer">
+        <span><kbd>&uarr;</kbd> <kbd>&darr;</kbd> to navigate</span>
+        <span><kbd>Enter</kbd> to execute</span>
+        <span><kbd>Esc</kbd> to dismiss</span>
+      </div>
+    </div>
+  </div>
 
   <!-- ==================== K. FOOTER ==================== -->
   <footer class="site-footer">
@@ -864,16 +869,43 @@
         <a href="mailto:anumulaadarsh6@gmail.com" class="footer-link">Email</a>
         <a href="#home" class="footer-top-link" id="back-to-top" aria-label="Scroll back to top">
           <span>Back to top</span>
-          <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <line x1="12" y1="19" x2="12" y2="5"></line>
-            <polyline points="5 12 12 5 19 12"></polyline>
-          </svg>
+          <i data-lucide="arrow-up" class="icon icon-xs"></i>
         </a>
       </div>
     </div>
   </footer>
 
-  <!-- Modular Vanilla JavaScript Files (Relative Paths) -->
+  <!-- ==================== EXTERNAL FRONTEND LIBRARIES (CDN) ==================== -->
+  <!-- 1. GSAP + ScrollTrigger (Scroll-Driven Animations & Counters) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <!-- 2. Chart.js (Live GitHub Analytics Visualizations) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+
+  <!-- 3. Vanilla-Tilt.js (3D Interactive Card Physics) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" defer></script>
+
+  <!-- 4. tsParticles Slim & Typed.js (Hero Node Network & Dynamic Typewriter) -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.12.0/tsparticles.slim.bundle.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js" defer></script>
+
+  <!-- 5. FormKit AutoAnimate Bridge (Smooth Grid Filtering & Layout Reflow) -->
+  <script type="module">
+    import autoAnimate from 'https://cdn.jsdelivr.net/npm/@formkit/auto-animate@0.8.2/index.mjs';
+    window.autoAnimate = autoAnimate;
+    var projGrid = document.getElementById('featured-projects-grid');
+    var ghGrid = document.getElementById('gh-repo-grid');
+    if (projGrid) autoAnimate(projGrid, { duration: 260, easing: 'ease-out' });
+    if (ghGrid) autoAnimate(ghGrid, { duration: 260, easing: 'ease-out' });
+  </script>
+
+  <!-- 6. Lucide Icons & Tippy.js + Popper (Vector Icons & Provenance Tooltips) -->
+  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js" defer></script>
+  <script src="https://unpkg.com/@popperjs/core@2" defer></script>
+  <script src="https://unpkg.com/tippy.js@6" defer></script>
+
+  <!-- Modular Application Scripts (Relative Paths) -->
   <script src="./js/projects.js" defer></script>
   <script src="./js/github.js" defer></script>
   <script src="./js/main.js" defer></script>
